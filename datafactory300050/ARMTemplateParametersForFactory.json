@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "datafactory300050"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics2_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics3_connectionString": {
+			"value": ""
+		},
+		"appvm_password": {
+			"value": ""
+		},
+		"datapool_linked_connectionString": {
+			"value": ""
+		},
+		"slsyndatalake_linked_accountKey": {
+			"value": ""
+		},
+		"appvm_properties_typeProperties_host": {
+			"value": "C:\\inetpub\\logs\\LogFiles\\W3SVC1"
+		},
+		"appvm_properties_typeProperties_userId": {
+			"value": "appadmin"
+		},
+		"slsyndatalake_linked_properties_typeProperties_url": {
+			"value": "https://slsyndatalake.dfs.core.windows.net/"
+		},
+		"BlobTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/1132318c-9d17-4a0c-8c01-1d86fc6451ca/resourceGroups/res_grp_sav/providers/Microsoft.Storage/storageAccounts/slsyndatalake"
+		}
+	}
+}
