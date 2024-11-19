@@ -1,0 +1,24 @@
+{
+	"name": "BlobTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "01-Pipeline-CSV-To-Paquet",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/data/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/1132318c-9d17-4a0c-8c01-1d86fc6451ca/resourceGroups/res_grp_sav/providers/Microsoft.Storage/storageAccounts/slsyndatalake",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

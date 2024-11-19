@@ -1,0 +1,9 @@
+{
+	"name": "datafactory300050",
+	"location": "switzerlandnorth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "016550e4-8a3d-4f78-aa95-9e6cd185126a",
+		"tenantId": "94089732-cef1-4b14-919e-b96490a005f4"
+	}
+}

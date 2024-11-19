@@ -1,0 +1,34 @@
+{
+	"name": "sunapseanalweblogsset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datapool_linked",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "LogDate",
+				"type": "date"
+			},
+			{
+				"name": "IpAddress",
+				"type": "varchar"
+			},
+			{
+				"name": "RequestMethod",
+				"type": "varchar"
+			},
+			{
+				"name": "RequestResource",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "WebLogs"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

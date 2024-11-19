@@ -1,0 +1,32 @@
+{
+	"name": "AzureSynapseAnalyticsTable4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datapool_linked",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "CustomerSK",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dimCustomer"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

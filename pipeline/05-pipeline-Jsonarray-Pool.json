@@ -1,0 +1,41 @@
+{
+	"name": "05-pipeline-Jsonarray-Pool",
+	"properties": {
+		"activities": [
+			{
+				"name": "dflow_CustArraysJson",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "03_dataflow_json_arrays",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "slsyndatalake_linked",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "staging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-11-17T18:21:15Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,81 @@
+{
+	"name": "05-dataflow_webLogs",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "datalake_logfile_delimited",
+						"type": "DatasetReference"
+					},
+					"name": "datalakelogfile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "sunapseanalweblogsset",
+						"type": "DatasetReference"
+					},
+					"name": "SynapseWebLogsSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "renamecolumn"
+				},
+				{
+					"name": "SplitLogDatantoArray"
+				},
+				{
+					"name": "MapColumns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {2024-11-18 00:48:55 10.0.0.4 GET / - 80 - 31.10.136.174 Mozilla/5.0+(Windows+NT+10.0;+Win64;+x64)+AppleWebKit/537.36+(KHTML} as string,",
+				"          {+like+Gecko)+Chrome/130.0.0.0+Safari/537.36+Edg/130.0.0.0 - 200 0 0 319} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     skipLines: 4) ~> datalakelogfile",
+				"datalakelogfile select(mapColumn(",
+				"          logdata = {2024-11-18 00:48:55 10.0.0.4 GET / - 80 - 31.10.136.174 Mozilla/5.0+(Windows+NT+10.0;+Win64;+x64)+AppleWebKit/537.36+(KHTML}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> renamecolumn",
+				"renamecolumn derive(logdata = split(logdata, \" \")) ~> SplitLogDatantoArray",
+				"SplitLogDatantoArray derive(LogDate = logdata[1],",
+				"          IPAddress = logdata[9],",
+				"          RequestMethod = logdata[4],",
+				"          RequestResource = logdata[5]) ~> MapColumns",
+				"MapColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          LogDate as date,",
+				"          IpAddress as string,",
+				"          RequestMethod as string,",
+				"          RequestResource as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          LogDate,",
+				"          IpAddress = IPAddress,",
+				"          RequestMethod,",
+				"          RequestResource",
+				"     )) ~> SynapseWebLogsSink"
+			]
+		}
+	}
+}

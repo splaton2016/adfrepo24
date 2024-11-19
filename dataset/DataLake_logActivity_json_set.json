@@ -1,0 +1,19 @@
+{
+	"name": "DataLake_logActivity_json_set",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "slsyndatalake_linked",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "json"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
